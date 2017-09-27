@@ -1,5 +1,7 @@
-var gulp = require('gulp');
-var $    = require('gulp-load-plugins')();
+var   gulp = require('gulp');
+var   $    = require('gulp-load-plugins')();
+var   livereload = require('gulp-livereload');
+
 
 var sassPaths = [
   'bower_components/normalize.scss/sass',
@@ -8,7 +10,7 @@ var sassPaths = [
 ];
 
 gulp.task('sass', function() {
-  return gulp.src('scss/app.scss')
+  return gulp.src('scss/*.scss')
     .pipe($.sass({
       includePaths: sassPaths,
       outputStyle: 'compressed' // if css compressed **file size**
@@ -22,4 +24,6 @@ gulp.task('sass', function() {
 
 gulp.task('default', ['sass'], function() {
   gulp.watch(['scss/**/*.scss'], ['sass']);
+  gulp.watch(['*.html'], ['html']);
+
 });
